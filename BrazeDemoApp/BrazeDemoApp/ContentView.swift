@@ -42,6 +42,7 @@ struct ContentView: View {
                 .textInputAutocapitalization(.never)
                 .textFieldStyle(.roundedBorder)
             Button("Submit user") {
+                // TODO: Implement Braze's changeUser() inside `IntegrationPlaygroundViewModel.changeUser`.
                 viewModel.changeUser(to: userId)
             }
             .buttonStyle(.borderedProminent)
@@ -65,6 +66,7 @@ struct ContentView: View {
                 .textInputAutocapitalization(.never)
                 .keyboardType(.emailAddress)
             Button("Submit profile details") {
+                // TODO: Wire this to Braze's user profile setters (firstName/lastName/email).
                 viewModel.identifyUser(firstName: firstName, lastName: lastName, email: email)
             }
             .buttonStyle(.bordered)
@@ -81,6 +83,7 @@ struct ContentView: View {
             TextField("Attribute value", text: $attributeValue)
                 .textFieldStyle(.roundedBorder)
             Button("Submit attribute") {
+                // TODO: Connect to `braze.user.setCustomAttribute`.
                 viewModel.setCustomAttribute(key: attributeKey, value: attributeValue)
             }
             .buttonStyle(.bordered)
@@ -99,6 +102,7 @@ struct ContentView: View {
             TextField("Property value (optional)", text: $eventPropertyValue)
                 .textFieldStyle(.roundedBorder)
             Button("Submit event") {
+                // TODO: Replace logging with `braze.logCustomEvent`.
                 viewModel.logCustomEvent(name: eventName,
                                          propertyKey: eventPropertyKey,
                                          propertyValue: eventPropertyValue)
@@ -116,12 +120,16 @@ struct ContentView: View {
                 .font(.footnote)
                 .foregroundStyle(.secondary)
             HStack {
+                // TODO: Implement push permission + device token registration.
                 Button("Register Push") { viewModel.registerForPush() }
+                // TODO: Request Braze Content Cards when ready.
                 Button("Content Cards") { viewModel.requestContentCards() }
             }
             .buttonStyle(.bordered)
             HStack {
+                // TODO: Present Braze in-app messages here.
                 Button("In-App Message") { viewModel.requestInAppMessage() }
+                // TODO: Call Braze's immediate flush API.
                 Button("Flush Data") { viewModel.flushData() }
             }
             .buttonStyle(.bordered)
