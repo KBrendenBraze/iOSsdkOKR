@@ -8,21 +8,16 @@
 /* Begin PBXBuildFile section */
 	BDA0010000000000000000100 /* BrazeDemoApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDA0010000000000000000010 /* BrazeDemoApp.swift */; };
 	BDA0010000000000000000101 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDA0010000000000000000011 /* ContentView.swift */; };
-	BDA0010000000000000000102 /* BrazeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDA0010000000000000000012 /* BrazeManager.swift */; };
-	BDA0010000000000000000103 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDA0010000000000000000013 /* AppDelegate.swift */; };
 	BDA0010000000000000000104 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BDA0010000000000000000015 /* Assets.xcassets */; };
 	BDA0010000000000000000105 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BDA0010000000000000000016 /* Preview Assets.xcassets */; };
 	BDA0010000000000000000106 /* BrazeConfiguration.example.plist in Resources */ = {isa = PBXBuildFile; fileRef = BDA0010000000000000000017 /* BrazeConfiguration.example.plist */; };
-	BDA0010000000000000000107 /* BrazeKit in Frameworks */ = {isa = PBXBuildFile; productRef = BDA0010000000000000000031 /* BrazeKit */; };
-	BDA0010000000000000000108 /* BrazeUI in Frameworks */ = {isa = PBXBuildFile; productRef = BDA0010000000000000000032 /* BrazeUI */; };
-	BDA0010000000000000000109 /* BrazeKitCompat in Frameworks */ = {isa = PBXBuildFile; productRef = BDA0010000000000000000033 /* BrazeKitCompat */; };
+	BDA0010000000000000000110 /* IntegrationPlaygroundViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDA0010000000000000000012 /* IntegrationPlaygroundViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 	BDA0010000000000000000010 /* BrazeDemoApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrazeDemoApp.swift; sourceTree = "<group>"; };
 	BDA0010000000000000000011 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
-	BDA0010000000000000000012 /* BrazeManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrazeManager.swift; sourceTree = "<group>"; };
-	BDA0010000000000000000013 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+	BDA0010000000000000000012 /* IntegrationPlaygroundViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntegrationPlaygroundViewModel.swift; sourceTree = "<group>"; };
 	BDA0010000000000000000014 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 	BDA0010000000000000000015 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 	BDA0010000000000000000016 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = "Preview Assets.xcassets"; path = "Preview Content/Preview Assets.xcassets"; sourceTree = "<group>"; };
@@ -35,9 +30,6 @@
 		isa = PBXFrameworksBuildPhase;
 		buildActionMask = 2147483647;
 		files = (
-			BDA0010000000000000000107 /* BrazeKit in Frameworks */,
-			BDA0010000000000000000108 /* BrazeUI in Frameworks */,
-			BDA0010000000000000000109 /* BrazeKitCompat in Frameworks */,
 		);
 		runOnlyForDeploymentPostprocessing = 0;
 	};
@@ -56,8 +48,7 @@
 		isa = PBXGroup;
 		children = (
 			BDA0010000000000000000010 /* BrazeDemoApp.swift */,
-			BDA0010000000000000000013 /* AppDelegate.swift */,
-			BDA0010000000000000000012 /* BrazeManager.swift */,
+			BDA0010000000000000000012 /* IntegrationPlaygroundViewModel.swift */,
 			BDA0010000000000000000011 /* ContentView.swift */,
 			BDA0010000000000000000015 /* Assets.xcassets */,
 			BDA0010000000000000000016 /* Preview Assets.xcassets */,
@@ -92,9 +83,6 @@
 		);
 		name = BrazeDemoApp;
 		packageProductDependencies = (
-			BDA0010000000000000000031 /* BrazeKit */,
-			BDA0010000000000000000032 /* BrazeUI */,
-			BDA0010000000000000000033 /* BrazeKitCompat */,
 		);
 		productName = BrazeDemoApp;
 		productReference = BDA0010000000000000000018 /* BrazeDemoApp.app */;
@@ -124,7 +112,6 @@
 		);
 		mainGroup = BDA0010000000000000000002;
 		packageReferences = (
-			BDA0010000000000000000030 /* XCRemoteSwiftPackageReference "braze-swift-sdk" */,
 		);
 		productRefGroup = BDA0010000000000000000004 /* Products */;
 		projectDirPath = "";
@@ -153,9 +140,8 @@
 		isa = PBXSourcesBuildPhase;
 		buildActionMask = 2147483647;
 		files = (
-			BDA0010000000000000000102 /* BrazeManager.swift in Sources */,
-			BDA0010000000000000000103 /* AppDelegate.swift in Sources */,
 			BDA0010000000000000000100 /* BrazeDemoApp.swift in Sources */,
+			BDA0010000000000000000110 /* IntegrationPlaygroundViewModel.swift in Sources */,
 			BDA0010000000000000000101 /* ContentView.swift in Sources */,
 		);
 		runOnlyForDeploymentPostprocessing = 0;
@@ -341,35 +327,6 @@
 		defaultConfigurationName = Debug;
 	};
 /* End XCConfigurationList section */
-
-/* Begin XCRemoteSwiftPackageReference section */
-	BDA0010000000000000000030 /* XCRemoteSwiftPackageReference "braze-swift-sdk" */ = {
-		isa = XCRemoteSwiftPackageReference;
-		repositoryURL = "https://github.com/braze-inc/braze-swift-sdk";
-		requirement = {
-			kind = exactVersion;
-			version = 13.3.0;
-		};
-	};
-/* End XCRemoteSwiftPackageReference section */
-
-/* Begin XCSwiftPackageProductDependency section */
-	BDA0010000000000000000031 /* BrazeKit */ = {
-		isa = XCSwiftPackageProductDependency;
-		package = BDA0010000000000000000030 /* XCRemoteSwiftPackageReference "braze-swift-sdk" */;
-		productName = BrazeKit;
-	};
-	BDA0010000000000000000032 /* BrazeUI */ = {
-		isa = XCSwiftPackageProductDependency;
-		package = BDA0010000000000000000030 /* XCRemoteSwiftPackageReference "braze-swift-sdk" */;
-		productName = BrazeUI;
-	};
-	BDA0010000000000000000033 /* BrazeKitCompat */ = {
-		isa = XCSwiftPackageProductDependency;
-		package = BDA0010000000000000000030 /* XCRemoteSwiftPackageReference "braze-swift-sdk" */;
-		productName = BrazeKitCompat;
-	};
-/* End XCSwiftPackageProductDependency section */
 
 	};
 	rootObject = BDA0010000000000000000001 /* Project object */;

@@ -2,13 +2,12 @@ import SwiftUI
 
 @main
 struct BrazeDemoApp: App {
-    @UIApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
-    @StateObject private var manager = BrazeManager.shared
+    @StateObject private var viewModel = IntegrationPlaygroundViewModel()
 
     var body: some Scene {
         WindowGroup {
             ContentView()
-                .environmentObject(manager)
+                .environmentObject(viewModel)
         }
     }
 }

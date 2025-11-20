@@ -1,42 +1,36 @@
-# Braze iOS SDK Demo
+# Braze iOS Integration Skeleton
 
-This repository now includes a ready-to-run SwiftUI sample application that exercises the Braze iOS SDK end-to-end:
+This repo intentionally **does not** include the Braze SDK. Instead, it ships a lightweight SwiftUI playground that lets you collect user/profile/event inputs with simple boxes + “Submit” buttons so you can wire each action to Braze yourself while following the public docs.
 
-- Initializes BrazeKit, BrazeUI, and BrazeKitCompat on launch
-- Implements `changeUser()` and captures common data inputs (custom events, purchases, custom attributes)
-- Demonstrates push plumbing (APNs registration + Braze notification delegation)
-- Retrieves Braze Content Cards and renders them with live updates
-- Requests in-app message display and forces data flushes so you can trigger a communication channel from the Braze dashboard
+## What’s inside
 
-## Repository layout
+- `BrazeDemoApp/`
+  - `BrazeDemoApp.xcodeproj` – single SwiftUI target, no external packages
+  - `BrazeDemoApp.swift` – app entry point
+  - `ContentView.swift` – the UI skeleton containing the user info / custom attribute / custom event forms plus placeholder channel buttons
+  - `IntegrationPlaygroundViewModel.swift` – a tiny observable object that just logs the action you tapped (so you know where to drop Braze calls)
+  - `BrazeConfiguration.example.plist` – optional template you can duplicate if you want to load keys at runtime once you integrate
+  - Minimal asset catalog + Info.plist boilerplate
 
-- `BrazeDemoApp/` – Xcode project, Swift sources, assets, and configuration plists
-  - `BrazeDemoApp.swift`, `AppDelegate.swift`, `BrazeManager.swift`, `ContentView.swift`
-  - `BrazeDemoApp.xcodeproj` already references the [Braze Swift SDK](https://github.com/braze-inc/braze-swift-sdk) via Swift Package Manager (pinned to 13.3.0)
-  - `BrazeConfiguration.example.plist` – sample config that you should copy to `BrazeConfiguration.plist` (ignored by git) with your API key, endpoint, and a default user id
+## Running the app
 
-## Getting started
+1. Open `BrazeDemoApp/BrazeDemoApp.xcodeproj` in Xcode 15+.
+2. Select the `BrazeDemoApp` target and supply your own `DEVELOPMENT_TEAM` if you plan to deploy to a device.
+3. Build & run on a simulator or hardware. You’ll see the “Braze Integration Sandbox” screen with separate boxes for:
+   - User identity / profile fields
+   - Custom attributes
+   - Custom events (with optional key/value)
+   - Quick actions for push registration, content cards, IAM, and flush requests
+4. Each tap appends a note to the Activity Log describing the Braze API you should hook up (e.g. “wire this to `changeUser()`”).
 
-1. `cp BrazeDemoApp/BrazeConfiguration.example.plist BrazeDemoApp/BrazeConfiguration.plist` and edit the values for `apiKey`, `endpoint`, and `defaultUserId`.
-2. Open `BrazeDemoApp/BrazeDemoApp.xcodeproj` in Xcode 15+.
-3. Select the `BrazeDemoApp` target, set your Apple `DEVELOPMENT_TEAM`, and let Xcode resolve the Braze Swift Package (13.3.0).
-4. Build & run on a simulator or device. The first launch requests push permissions from the SDK section of the UI when you tap the button.
+## How to integrate Braze yourself
 
-## Verifying Braze communication flows
+- Add the Braze Swift Package (or Cocoapods) to the Xcode project.
+- Replace the log-only implementations in `IntegrationPlaygroundViewModel` with real calls:
+  - `changeUser()` ⇒ `Braze.shared.changeUser`
+  - `setCustomAttribute` ⇒ `braze.user.setCustomAttribute`
+  - `logCustomEvent` ⇒ `braze.logCustomEvent`
+  - `registerForPush`, `requestContentCards`, `requestInAppMessage`, `flushData` ⇒ hook to the relevant Braze SDK entry points.
+- Use the provided text fields and submit buttons as your out-of-the-box UI for testing each flow while you follow Braze’s documentation.
 
-Inside the running app you can:
-
-- **Change users** – type a Braze user id and tap “Apply user”; the UI updates and `Braze.changeUser` is invoked.
-- **Send data** – log a custom event or purchase, or set a custom attribute; each call updates the status label.
-- **Retrieve Content Cards** – tap “Refresh content cards” to call `Braze.contentCards.requestRefresh`. The list view live-updates via `subscribeToUpdates`.
-- **Trigger an in-app message** – tap “Trigger in-app message sync” after scheduling an IAM in the Braze dashboard for the active user. The sample sets `BrazeInAppMessageUI.Presenter` so the message renders in-app.
-- **Exercise push** – tap “Request push permissions” to register the device token with Braze. Foreground/background notification delegates already forward Braze payloads.
-- **Force a flush** – tap “Flush data to Braze” to call `requestImmediateDataFlush()` when you need to force send/receive.
-
-Use Braze’s dashboard to send at least one channel (Content Cards, IAM, or Push) to the selected user id, then use the in-app buttons to observe it arriving.
-
-## Next steps
-
-- Drop in real app icons under `Assets.xcassets/AppIcon`.
-- Wire a Notification Service Extension (`BrazeNotificationService`) or Push Story if needed.
-- Add any advanced Braze features (Content Cards UI customization, in-app message delegates, analytics hooks, etc.).
+This keeps the app as a clean slate (no Braze SDK code yet) while giving you all the scaffolding needed to plug Braze in on your own timeline.
